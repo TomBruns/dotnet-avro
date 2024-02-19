@@ -28,6 +28,9 @@ namespace Chr.Avro.Cli
             }),
         };
 
+        [Option('f', "schema-file", HelpText = "The full pathname of the avsc schema file on disk.")]
+        public string SchemaFileName { get; set; }
+
         [Option('a', "assembly", HelpText = "The name of or path to an assembly to load (multiple space-separated values accepted).")]
         public IEnumerable<string> AssemblyNames { get; set; }
 

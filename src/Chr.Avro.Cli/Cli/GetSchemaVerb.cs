@@ -23,6 +23,9 @@ namespace Chr.Avro.Cli
             }),
         };
 
+        [Option('f', "schema-file", HelpText = "The full pathname of the avsc schema file on disk.")]
+        public string SchemaFileName { get; set; }
+
         [Option('c', "registry-config", HelpText = "Configuration options to provide to the registry client (multiple space-separated key=value pairs accepted).")]
         public IEnumerable<string> RegistryConfig { get; set; }
 

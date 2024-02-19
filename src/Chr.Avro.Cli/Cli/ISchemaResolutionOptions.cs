@@ -2,6 +2,7 @@ namespace Chr.Avro.Cli
 {
     using System;
     using System.Collections.Generic;
+    using System.IO;
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
     using SchemaRegistryClient = global::Confluent.SchemaRegistry.CachedSchemaRegistryClient;
@@ -13,6 +14,8 @@ namespace Chr.Avro.Cli
     {
         IEnumerable<string> RegistryConfig { get; set; }
 
+        string SchemaFileName { get; set; }
+
         string RegistryUrl { get; }
 
         int? SchemaId { get; }
@@ -23,7 +26,11 @@ namespace Chr.Avro.Cli
 
         public async Task<string> ResolveSchema()
         {
-            if (Console.IsInputRedirected)
+            if (!string.IsNullOrEmpty(SchemaFileName))
+            {
+                return await File.ReadAllTextAsync(SchemaFileName);
+            }
+            else if (Console.IsInputRedirected)
             {
                 using var stream = Console.OpenStandardInput();
                 using var streamReader = new System.IO.StreamReader(stream);
@@ -48,9 +55,9 @@ namespace Chr.Avro.Cli
 
                 if (string.IsNullOrWhiteSpace(RegistryUrl))
                 {
-                    if (string.IsNullOrWhiteSpace(configuration.Url))
+                    if (string.IsNullOrWhiteSpace(configuration.Url) && string.IsNullOrEmpty(SchemaFileName))
                     {
-                        throw new ProgramException(message: "When not reading from stdin, you must provide --registry-url.");
+                        throw new ProgramException(message: "When not reading from stdin, you must provide --registry-url or --schema-file.");
                     }
                 }
                 else

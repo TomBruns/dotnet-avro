@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Chr.Avro.Cli": {
+      "commandName": "Project",
+      "commandLineArgs": " create --type System.DateTime"
+    }
+  }
+}

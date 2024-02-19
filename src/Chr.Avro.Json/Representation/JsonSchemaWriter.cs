@@ -59,6 +59,7 @@ namespace Chr.Avro.Representation
             {
                 // logical types:
                 writer => new JsonDateSchemaWriterCase(),
+                writer => new JsonDateTimeSchemaWriterCase(),
                 writer => new JsonDecimalSchemaWriterCase(),
                 writer => new JsonDurationSchemaWriterCase(),
                 writer => new JsonMicrosecondTimeSchemaWriterCase(),

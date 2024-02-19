@@ -40,6 +40,9 @@ namespace Chr.Avro.Cli
         [Option('r', "registry-url", HelpText = "The URL of the schema registry.")]
         public string RegistryUrl { get; set; }
 
+        [Option('f', "schema-file", HelpText = "The full pathname of the avsc schema file on disk.")]
+        public string SchemaFileName { get; set; }
+
         [Option('i', "id", SetName = ByIdSet, HelpText = "If a subject/version is not specified, the ID of the schema.")]
         public int? SchemaId { get; set; }
 

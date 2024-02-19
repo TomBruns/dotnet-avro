@@ -102,6 +102,8 @@ namespace Chr.Avro.Abstract
                 builder => new LongSchemaBuilderCase(),
                 builder => new StringSchemaBuilderCase(nullableReferenceTypeBehavior),
 
+                builder => new DateTimeSchemaBuilderCase(),
+
                 // enums:
                 builder => new EnumSchemaBuilderCase(enumBehavior, builder),
 
